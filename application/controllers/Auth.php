@@ -22,6 +22,35 @@ class Auth extends CI_Controller{
   }
   private function _login()
   {
+    $email = $this->input->post('email');
+    $password = $this->input->post('password');
+
+    $user = $this->M_perpus->($email);
+
+    if($user){
+      // Akun sudah terdaftar
+      if(password_verify($password,$user['password'])){
+        $data = [
+          'id_anggota' => $user['id_anggota'],
+          'nama_lengkap' => $user['nama_lengkap'],
+          'email' => $user['email'],
+          'role_id' => $user['role_id']
+        ];
+        $this->session->set_userdata($data);
+        if($user['role_id'] == 1){
+          redirect('admin');
+        }else{
+          redirect('dashboard');
+        }
+      }else{
+        $this->session->set_flashdata('salah_password','Password yang anda masukan salah');
+        redirect('auth/login');
+      }
+    }else{
+      // Akun belum terdaftar
+      $this->session->set_flashdata('gagal_login','Email belum terdaftar');
+      redirect('auth/login');
+    }
     
   }
 
