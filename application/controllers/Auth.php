@@ -54,6 +54,12 @@ class Auth extends CI_Controller{
 
   }
 
+  public function logout()
+  {
+    session_destroy();
+    redirect('auth/login');
+  }
+
 
   public function daftar()
   {
