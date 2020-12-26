@@ -26,7 +26,7 @@
 
       <div class="form-group">
       <label for="password">Password</label>
-        <input placeholder="Masukan password anda" class="form-control" name="password" type="text" id="password">
+        <input placeholder="Masukan password anda" class="form-control" name="password" type="password" id="password">
         <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
       </div>
       
