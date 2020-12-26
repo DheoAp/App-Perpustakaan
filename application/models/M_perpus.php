@@ -6,6 +6,11 @@ class M_perpus extends CI_Model{
     return $this->db->insert($table,$data);
   }
 
+  public function getByEmail($email)
+  {
+   return $this->db->get_where('anggota',['email' => $email])->row_array();
+  }
+
   public function edit_data($where,$table)
   {
    return $this->db->get_where($table,$where); 
