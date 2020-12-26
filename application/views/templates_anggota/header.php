@@ -29,12 +29,12 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?= "Hallo, ".$this->session->userdata('nama');?>
+          <?= "Hallo, ".$this->session->userdata('nama_lengkap');?>
           </a>
           <div class="dropdown-menu p-2 bg-dark" aria-labelledby="navbarDropdownMenuLink">
             <a class="nav-link" href="<?= base_url();?>admin/laporan">Laporan</a>
             <a class="nav-link" href="<?= base_url();?>admin/ganti_password">Ganti Password</a>
-            <a class="nav-link text-danger" href="<?= base_url();?>admin/logout">Logout</a>
+            <a class="nav-link text-danger" href="<?= base_url('auth/logout');?>">Logout</a>
           </div>
         </li>
       </ul>
