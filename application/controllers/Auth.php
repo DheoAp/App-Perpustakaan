@@ -25,7 +25,7 @@ class Auth extends CI_Controller{
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $user = $this->M_perpus->($email);
+    $user = $this->M_perpus->getByEmail($email);
 
     if($user){
       // Akun sudah terdaftar
@@ -51,7 +51,7 @@ class Auth extends CI_Controller{
       $this->session->set_flashdata('gagal_login','Email belum terdaftar');
       redirect('auth/login');
     }
-    
+
   }
 
 
