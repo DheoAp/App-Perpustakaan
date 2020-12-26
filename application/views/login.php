@@ -7,6 +7,20 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+    <?php elseif($this->session->flashdata('gagal_login')):?>
+      <div class="alert alert-danger alert-dismissible col-md-5 fade show m-2" role="alert">
+        <?= $this->session->flashdata('gagal_login');?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php elseif($this->session->flashdata('salah_password')):?>
+      <div class="alert alert-warning alert-dismissible col-md-5 fade show m-2" role="alert">
+        <?= $this->session->flashdata('salah_password');?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <?php endif; ?>
   </div>
 </div>
