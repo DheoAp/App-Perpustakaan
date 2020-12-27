@@ -53,7 +53,7 @@
       
       <div class="form-group ">
         <button class="btn btn-primary btn-block mb-2">Masuk</button>
-        <span>Belum punya akun? </span><a href="<?= base_url('auth/daftar');?>" >Daftar disini.</a>           
+        <span>Belum punya akun? </span><a href="<?= base_url('daftar');?>" >Daftar disini.</a>           
       </div>
     </div>
 

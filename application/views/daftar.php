@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col-md mt-1">
             <button class="btn btn-primary btn-md btn-block mb-1">Buat Akun</button>
-            <span>Punya akun? </span><a href="<?= base_url('auth/login');?>" >Silakan login.</a>
+            <span>Punya akun? </span><a href="<?= base_url('');?>" >Silakan login.</a>
           </div>
         </div>            
       </div>

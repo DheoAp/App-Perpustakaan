@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="<?= base_url().'assets/css/bootstrap.css'?>">
   <script src="<?= base_url().'assets/js/jquery.js'?>"></script>
   <script src="<?= base_url().'assets/js/bootstrap.js'?>"></script>
-  <title>Daftar Akun - Aplikasi Perpustakaan Berbasis Web</title>
+  <title><?= $title;?></title>
 </head>
 <body>
 
