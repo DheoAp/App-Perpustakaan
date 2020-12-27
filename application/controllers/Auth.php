@@ -12,6 +12,7 @@ class Auth extends CI_Controller{
     if($this->form_validation->run() == false){
 
       $judul['judul'] = "Silakan Login";
+      $judul['title'] = "Selamat Datang";
       $this->load->view('templates_login/header',$judul); 
       $this->load->view('login'); 
       $this->load->view('templates_login/footer'); 
