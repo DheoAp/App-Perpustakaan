@@ -11,7 +11,9 @@ class Dashboard extends CI_Controller{
 	}
 	public function index()
 	{
-		$this->load->view('templates_anggota/header');
+		$data['buku'] = $this->M_perpus->getAllBuku('buku');
+		$data['title'] = "Data Buku";
+		$this->load->view('templates_anggota/header',$data);
 		$this->load->view('anggota/dashboard');
 		$this->load->view('templates_anggota/footer');
 	}
