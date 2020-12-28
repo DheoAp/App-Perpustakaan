@@ -123,8 +123,8 @@
 										<?php $no=1; foreach( $anggota as $a ): ?>
 												<tr>
 													<td><?= $no++;?></td>
-													<td><?= $a->nama_anggota;?></td>
-													<td><?= $a->gender;?></td>
+													<td><?= $a->nama_lengkap;?></td>
+													<td><?= $a->jenis_kelamin;?></td>
 													<td><?= $a->alamat;?></td>
 													<td><?= $a->no_telp;?></td>
 													<td><?= $a->email;?></td>
