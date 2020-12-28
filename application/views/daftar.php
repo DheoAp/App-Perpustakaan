@@ -1,5 +1,5 @@
 <br>
-<form action="<?= base_url().'auth/daftar'?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url().'daftar'?>" method="post" enctype="multipart/form-data">
   <div class="row">
     
     <div class="col-md">
