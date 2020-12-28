@@ -5,8 +5,7 @@
 
 </div>
 
-<!-- <script>
-$('.alert-message').alert().delay(3000).slideUp('slow');
-</script> -->
+<script src="<?= base_url('assets/js/');?>jquery.min.js"></script>
+<script src="<?= base_url('assets/js/');?>bootstrap.min.js"></script>
 </body>
 </html>
