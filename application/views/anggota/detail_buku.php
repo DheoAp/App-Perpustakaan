@@ -9,6 +9,16 @@
         <p class="card-text">Pengarang : <?= $detailBuku['pengarang'];?></p>
         <p class="card-text">kategori : <?= $detailBuku['nama_kategori'];?></p>
         <p class="card-text"><small class="text-muted"><h5>Penerbit : <?= $detailBuku['penerbit'];?></h5></small></p>
+        <div class="card-footer">
+            <?php
+                if ($detailBuku['status_buku'] == "0") {
+                  echo "<button class='btn btn-sm btn-outline-secondary' disabled>Sudah Di Pinjam</button>";
+                }else{
+                  echo anchor('dashboard/pinjam_buku/'.$detailBuku['id_buku'],'<button class="btn btn-sm btn-primary">Pinjam</button>');
+                }
+              ?>
+              <a href="<?= base_url('dashboard');?>" class="btn btn-sm btn-danger" >Kembali</a>
+        </div>
       </div>
     </div>
   </div>
