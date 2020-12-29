@@ -42,6 +42,17 @@
               <h4 class="card-text">Penerbit :  <?= $b['penerbit'];?></h4>
               <p class="card-text">Tahun Terbit : <?= $b['thn_terbit'];?></p>
               <p class="card-text">Lokasi :  <?= $b['lokasi'];?></p>
+              <p class="card-text">kategori :  <?= $b['nama_kategori'];?></p>
+            </div>
+            <div class="card-footer">
+              <?php
+                if ($b['status_buku'] == "0") {
+                  echo "<button class='btn btn-sm btn-outline-secondary' disabled>Sudah Di Pinjam</button>";
+                }else{
+                  echo anchor('dashboard/pinjam_buku/'.$b['id_buku'],'<button class="btn btn-sm btn-primary">Pinjam</button>');
+                }
+              ?>
+              <a href="<?= base_url('dashboard/detail_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-success" >Detail</a>
             </div>
             <div class="card-footer">
               <small class="text-muted">Pengarang : <?= $b['pengarang'];?></small>
