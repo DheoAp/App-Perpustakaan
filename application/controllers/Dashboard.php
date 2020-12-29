@@ -30,5 +30,9 @@ class Dashboard extends CI_Controller{
 		$this->load->view('anggota/detail_buku',$data);
 		$this->load->view('templates_anggota/footer');
 	}
+	public function pinjam_buku()
+	{
+		$this->load->view('anggota/pinjam_buku');
+	}
 
 } // akhir class
