@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title"><?= $detailBuku['judul_buku'];?></h5>
         <p class="card-text">Pengarang : <?= $detailBuku['pengarang'];?></p>
-        <p class="card-text">kategori : <?= $detailBuku['id_kategori'];?></p>
+        <p class="card-text">kategori : <?= $detailBuku['nama_kategori'];?></p>
         <p class="card-text"><small class="text-muted"><h5>Penerbit : <?= $detailBuku['penerbit'];?></h5></small></p>
       </div>
     </div>
