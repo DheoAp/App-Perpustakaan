@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller{
 	public function detail_buku($id)
 	{
 		
-		$data['detailBuku'] = $this->M_perpus->getById('buku',['id_buku' => $id]);
+		$data['detailBuku'] = $this->M_perpus->getById($id)->row_array();
 		
 		$data['title'] = $data['detailBuku']['judul_buku'];
 
