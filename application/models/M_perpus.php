@@ -20,9 +20,14 @@ class M_perpus extends CI_Model{
    return $this->db->get_where($table,$where); 
   }
 
-  public function getById($table,$id)
+  public function getById($id)
   {
-    return $this->db->get_where($table,$id)->row_array();
+    $this->db->select('buku.*, kategori.nama_kategori as nama_kategori');
+    $this->db->from('buku');
+    $this->db->join('kategori','kategori.id_kategori=buku.id_kategori');
+    $this->db->where('id_buku',$id);
+    return $this->db->get();
+
   }
   
   public function hapus_buku($table,$id)
