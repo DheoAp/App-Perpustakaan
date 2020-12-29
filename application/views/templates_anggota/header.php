@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url();?>">Home</a>
+          <a class="nav-link" href="<?= base_url('dashboard');?>">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url();?>"><i class="fas fa-cart-arrow-down"></i> Keranjang Pinjam</a>
