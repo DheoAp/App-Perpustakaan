@@ -11,10 +11,23 @@ class Dashboard extends CI_Controller{
 	}
 	public function index()
 	{
-		$data['buku'] = $this->M_perpus->getAllBuku('buku');
+		// $data['buku'] = $this->M_perpus->getAllData('buku');
+		$data['buku'] = $this->db->query("SELECT * FROM buku b, kategori k WHERE b.id_kategori=k.id_kategori")->result_array();
 		$data['title'] = "Data Buku";
 		$this->load->view('templates_anggota/header',$data);
 		$this->load->view('anggota/dashboard');
+		$this->load->view('templates_anggota/footer');
+	}
+
+	public function detail_buku($id)
+	{
+		
+		$data['detailBuku'] = $this->M_perpus->getById('buku',['id_buku' => $id]);
+		
+		$data['title'] = $data['detailBuku']['judul_buku'];
+
+		$this->load->view('templates_anggota/header',$data);
+		$this->load->view('anggota/detail_buku',$data);
 		$this->load->view('templates_anggota/footer');
 	}
 
