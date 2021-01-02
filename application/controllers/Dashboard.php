@@ -56,7 +56,16 @@ class Dashboard extends CI_Controller{
 		$this->M_perpus->insert_data('keranjang',$data);
 		$this->session->set_flashdata('pesan','Buku Berhasil di Tambahkan, cek di keranjang.');
 		redirect('dashboard');
+	}
 
+	public function keranjang()
+	{
+		// $data['dataPinjam'] = $this->M_perpus->getAllData('keranjang');
+		$data['dataPinjam'] = $this->db->query("SELECT * FROM keranjang k, buku b WHERE k.id_buku=b.id_buku")->result_array();
+		$data['title'] = "Keranjang";
+		$this->load->view('templates_anggota/header',$data);
+		$this->load->view('anggota/keranjang_buku');
+		$this->load->view('templates_anggota/footer');
 	}
 
 		
