@@ -49,11 +49,18 @@ class Dashboard extends CI_Controller{
 			'tanggal_kembali' => htmlspecialchars($this->input->post('tanggal_kembali',true)),
 			'tanggal_dikembalikan' => '-',
 			'total_denda' => '0',
-			'status_peminjaman' => 'Belum Selesai',
-			'status_pengembalian' => 'Belum di Kembali',
+			'status_peminjaman' => '0',
+			'status_pengembalian' => '0',
 			'keperluan' => htmlspecialchars($this->input->post('keperluan',true)),
 		];
 		$this->M_perpus->insert_data('keranjang',$data);
+		$status =[
+			'status_buku' => '0'
+		];
+		$id_buku = [
+			'id_buku' => $data['id_buku']
+		];
+		$this->M_perpus->update_status_buku('buku',$status,$id_buku);
 		$this->session->set_flashdata('pesan','Buku Berhasil di Tambahkan, cek di keranjang.');
 		redirect('dashboard');
 	}
