@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="card mx-auto" style="margin-top: 100px;margin-bottom:200px; width:95%">
+<div class="container-fluid">
+  <div class="card mx-auto" style="margin-top: 100px;margin-bottom:200px; width:100%">
     <div class="card-header">
-      Buku Anda
+    <h5>Terimakasih, berikut buku yang anda pinjam</h5>
     </div>
     <?php if( $this->session->flashdata('pesan')): ?>
       <div class="row mt-4">
@@ -24,6 +24,8 @@
             <th>Pengarang</th>
             <th>Tanggal Pinjam</th>
             <th>Tanggal Kembali</th>
+            <th>Status Pinjam</th>
+            <th>Status Kembali</th>
             <th colspan="2" class="text-center">Pilih</th>
           </tr>
         </thead>
@@ -35,6 +37,22 @@
             <td><?= $p['pengarang'];?></td>
             <td><?= $p['tanggal_pinjam'];?></td>
             <td><?= $p['tanggal_kembali'];?></td>
+            <td>
+              <?php if( $p['status_peminjaman'] == '0' ): ?>
+                  <?= '<h6><span class="badge badge-primary">Belum Selesai</span></h6>';?>
+              <?php else : ?>
+                <?= '<h6><span class="badge badge-success">Sudah Selesai</span></h6>';?>
+              <?php endif; ?>
+            </td>
+            <td>
+              <?php if( $p['status_pengembalian'] == '0' ): ?>
+                    <?= '<h6><span class="badge badge-primary">Masih di pinjam</span></h6>';?>
+              <?php elseif( $p['status_pengembalian'] == '1' ): ?>
+                  <?= '<h6><span class="badge badge-success">Belum Kembali</span></h6>';?>
+              <?php else: ?>
+                  <?= '<h6><span class="badge badge-primary">Sudah Kembali</span></h6>';?>
+              <?php endif; ?>
+            </td>
             <td><a class="btn btn-sm btn-danger" href="<?= base_url('dashboard/transaksi_aksi');?>">Hapus</a></td>
             <td><a class="btn btn-sm btn-primary" href="<?= base_url('dashboard/transaksi_aksi');?>">Detail</a></td>
           </tr>
