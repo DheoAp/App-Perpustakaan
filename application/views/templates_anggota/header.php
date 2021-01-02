@@ -23,7 +23,7 @@
           <a class="nav-link" href="<?= base_url('dashboard');?>">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url();?>"><i class="fas fa-cart-arrow-down"></i> Keranjang Pinjam</a>
+          <a class="nav-link" href="<?= base_url('dashboard/keranjang');?>">Keranjang Buku</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="<?= base_url();?>admin/peminjaman">Transaksi Peminjaman</a>
