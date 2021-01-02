@@ -6,6 +6,11 @@ class M_perpus extends CI_Model{
     return $this->db->insert($table,$data);
   }
 
+  public function update_status_buku($table,$status,$id_buku)
+  {
+    $this->db->update($table,$status,$id_buku);
+  }
+
   public function getByEmail($email)
   {
    return $this->db->get_where('anggota',['email' => $email])->row_array();
@@ -46,11 +51,7 @@ class M_perpus extends CI_Model{
  {
    return $this->db->get($table);
  }
- public function update_data($table,$data,$where)
- {
-  //  $this->db->where($where);
-   $this->db->update($table,$data,$where);
- }
+
  public function delete_data($where,$table)
  {
    $this->db->where($where);
