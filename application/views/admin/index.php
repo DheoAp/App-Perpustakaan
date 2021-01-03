@@ -162,12 +162,40 @@
 											<th>Tgl Kembali</th>
 											<th>Status Pinjam</th>
 											<th>Status Kembali</th>
+											<th>Total Denda</th>
 											<th colspan="3" class="text-center">Aksi</th>
 										</tr>
 									</thead>
 									
 									<tbody>
-										
+										<?php $no=1; foreach( $peminjaman as $p ): ?>
+												<tr>
+													<td><?= $no++;?></td>
+													<td><?= $p['nama_lengkap'];?></td>
+													<td><?= $p['tanggal_pinjam'];?></td>
+													<td><?= $p['tanggal_kembali'];?></td>
+													<td>
+														<?php if($p['status_peminjaman'] == "0" ): ?>
+																<?= '<h6><span class="badge badge-primary">Belum Selesai</span></h6>';?>
+														<?php elseif($p['status_peminjaman'] == "1" ): ?>
+																<?= '<h6><span class="badge badge-primary">Sudah Selesai</span></h6>';?>
+														<?php endif; ?>
+													</td>
+													<td>
+													<?php if( $p['status_pengembalian'] == '0' ): ?>
+															<?= '<h6><span class="badge badge-primary">Masih di pinjam</span></h6>';?>
+													<?php elseif( $p['status_pengembalian'] == '1' ): ?>
+															<?= '<h6><span class="badge badge-success">Belum Kembali</span></h6>';?>
+													<?php else: ?>
+															<?= '<h6><span class="badge badge-primary">Sudah Kembali</span></h6>';?>
+													<?php endif; ?>
+													</td>
+													<td><?= $p['total_denda'];?></td>
+													<td><a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td>
+													<td><a href="" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a></td>
+													<td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
+												</tr>
+										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
