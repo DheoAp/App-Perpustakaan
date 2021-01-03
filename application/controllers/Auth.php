@@ -26,7 +26,7 @@ class Auth extends CI_Controller{
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $user = $this->M_perpus->getByEmail($email);
+    $user = $this->M_perpus->getByEmail('anggota',$email);
 
     if($user){
       // Akun sudah terdaftar
