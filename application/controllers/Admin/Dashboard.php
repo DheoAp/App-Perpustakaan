@@ -230,4 +230,35 @@
      }
    }
 
+  public function daftar()
+  {
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[admin.email]');
+    $this->form_validation->set_rules('nama_admin', 'Nama lengkap', 'required');
+    $this->form_validation->set_rules('password', 'Password', 'required|trim|matches[password2]|min_length[6]');
+    $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]');
+
+    if($this->form_validation->run() == false){
+      $judul['judul'] = "Buat Akun Admin";
+      $judul['title'] = "Buat Akun Admin";
+      $this->load->view('templates_login/header',$judul); 
+      $this->load->view('admin/daftar'); 
+      $this->load->view('templates_login/footer'); 
+    }else{
+      $data = [
+        'role_id' => '1',
+        'nama_admin' => htmlspecialchars($this->input->post('nama_admin',true)),
+        'email' => htmlspecialchars($this->input->post('email',true)),
+        'foto' => 'default.png',
+        'tgl_bergabung' => time(),
+        'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT)
+      ];
+
+      $this->M_perpus->insert_data('admin',$data);
+      $this->session->set_flashdata('daftar','Berhasil di daftarkan.');
+      redirect('auth/login');
+    }
+
+    
+  }
+
 }// akhir class
