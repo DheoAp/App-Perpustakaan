@@ -11,9 +11,9 @@ class M_perpus extends CI_Model{
     $this->db->update($table,$status,$id_buku);
   }
 
-  public function getByEmail($email)
+  public function getByEmail($table,$email)
   {
-   return $this->db->get_where('anggota',['email' => $email])->row_array();
+   return $this->db->get_where($table,['email' => $email])->row_array();
   }
 
   public function getAllData($table)
