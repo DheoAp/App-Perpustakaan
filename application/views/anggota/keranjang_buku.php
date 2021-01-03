@@ -62,7 +62,6 @@
     </div>
     <div class="card-footer text-right">
       <a href="<?= base_url('dashboard');?>" class="btn btn-sm btn-primary">Pinjam Lagi</a>
-      <button class="btn btn-sm btn-success">Lanjutkan</button>
     </div>
   </div>
 </div>
