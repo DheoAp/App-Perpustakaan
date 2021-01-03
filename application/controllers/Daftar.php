@@ -6,7 +6,7 @@ class Daftar extends CI_Controller{
   public function index()
   {
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[anggota.email]');
-    $this->form_validation->set_rules('nama_lengkap', 'Nama lengkap', 'required|alpha');
+    $this->form_validation->set_rules('nama_lengkap', 'Nama lengkap', 'required');
     $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
     $this->form_validation->set_rules('tempat_lahir', 'Tempat lahir', 'required');
     $this->form_validation->set_rules('tanggal_lahir', 'Tanggal lahir', 'required');
