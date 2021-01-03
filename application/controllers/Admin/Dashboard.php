@@ -255,7 +255,7 @@
 
       $this->M_perpus->insert_data('admin',$data);
       $this->session->set_flashdata('daftar','Berhasil di daftarkan.');
-      redirect('auth/login');
+      redirect('admin/auth/login');
     }
 
     
