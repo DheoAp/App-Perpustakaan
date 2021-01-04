@@ -4,7 +4,7 @@
    {
      parent::__construct();
      //cek login
-    //  cek_login();
+     cek_login();
    }
 
   
@@ -199,7 +199,7 @@
    {
      // untuk menghapus semua session
      $this->session->sess_destroy();
-     redirect('welcome');
+     redirect('admin/auth/login');
    }
 
    function ganti_password()
