@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller{
 
-  public function cek_login()
+  private function cek_login()
   {
     if($this->session->userdata('email')){
       redirect('dashboard');
