@@ -4,8 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller{
 
+  public function cek_login()
+  {
+    if($this->session->userdata('email')){
+      redirect('dashboard');
+    }
+  }
+
   public function login()
   {
+    $this->cek_login();
     $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
     $this->form_validation->set_rules('password', 'Password', 'required');
 
