@@ -20,7 +20,7 @@
 	<!-- Navbar-->
 	<ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
 		<li class="nav-item">
-			<a class="nav-link d-none d-md-inline-block" href="#"><?= "Hallo, ".$this->session->userdata('nama');?></a>
+			<a class="nav-link d-none d-md-inline-block" href="#"><?= "Hallo, ".$this->session->userdata('nama_admin');?></a>
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -28,7 +28,7 @@
 				<a class="dropdown-item" href="<?= base_url();?>admin/laporan">Laporan</a>
 				<a class="dropdown-item" href="<?= base_url();?>admin/ganti_password">Ganti Password</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="<?= base_url('admin/logout');?>">Keluar</a>
+				<a class="dropdown-item" href="<?= base_url('admin/dashboard/logout');?>">Keluar</a>
 			</div>
 		</li>
 	</ul>
