@@ -47,10 +47,8 @@
             <td>
               <?php if( $p['status_pengembalian'] == '0' ): ?>
                     <?= '<h6><span class="badge badge-primary">Masih di pinjam</span></h6>';?>
-              <?php elseif( $p['status_pengembalian'] == '1' ): ?>
-                  <?= '<h6><span class="badge badge-success">Belum Kembali</span></h6>';?>
               <?php else: ?>
-                  <?= '<h6><span class="badge badge-primary">Sudah Kembali</span></h6>';?>
+                  <?= '<h6><span class="badge badge-success">Sudah Kembali</span></h6>';?>
               <?php endif; ?>
             </td>
             <td><a class="btn btn-sm btn-danger" href="<?= base_url('dashboard/transaksi_aksi');?>">Hapus</a></td>
