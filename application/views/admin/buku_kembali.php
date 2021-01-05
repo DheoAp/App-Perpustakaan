@@ -7,33 +7,32 @@
       </div>
 
       <div class="card-body table-responsive">
+        <?php foreach( $buku_kembali as $b ): ?>
         <form action="<?= base_url('admin/dashboard/buku_kembali_aksi');?>" method="post" enctype="multipart/form-data">
 
           <div class="form-group">
             <label for="nama_lengkap">Nama Anggota</label>
-            <input class="form-control" name="nama_lengkap" value="<?= set_value('nama_lengkap')?>" type="text" id="nama_lengkap">
+            <input class="form-control" name="id_pinjam" value="<?= $b['id_pinjam'];?>" type="hidden" id="id_pinjam" readonly>
+            <input class="form-control" name="id_buku" value="<?= $b['id_buku'];?>" type="hidden" id="id_buku" readonly>
+            <input class="form-control" name="nama_lengkap" value="<?= $b['nama_lengkap'];?>" type="text" id="nama_lengkap" readonly>
             <?= form_error('nama_lengkap', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <div class="form-group">
             <label for="id_buku">Nama Buku</label>
-            <input class="form-control" name="id_buku" value="<?= set_value('id_buku')?>" type="text" id="id_buku">
+            <input class="form-control" name="id_buku" value="<?= $b['judul_buku'];?>" type="text" id="id_buku" readonly>
             <?= form_error('id_buku', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <div class="form-group">
               <label for="tanggal_pengembalian">Tanggal Kembali</label>
-              <input class="form-control" type="date" name="tanggal_kembali" value="" readonly>
+              <input class="form-control" type="text" name="tanggal_kembali" value="<?= $b['tanggal_kembali'];?>" readonly>
               <?= form_error('tanggal_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <div class="form-group">
-            <label for="tanggal_pengembalian">Tanggal Pengembalian</label>
-            <input class="form-control" name="tanggal_pengembalian" value="" type="date" id="tanggal_pengembalian">
-            <?= form_error('tanggal_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
+            <label for="tanggal_dikembalikan">Tanggal dikembalikan</label>
+            <input class="form-control" name="tanggal_dikembalikan" value="" type="date" id="tanggal_dikembalikan">
+            <?= form_error('tanggal_dikembalikan', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
-          <div class="form-group">
-            <label for="total_denda">Total denda</label>
-            <input class="form-control" type="text" name="tanggal_kembali" value="" readonly>
-            <?= form_error('total_denda', '<small class="text-danger pl-3">', '</small>'); ?>
-          </div>
+          
           <div class="form-group">
             <label>Status Peminjaman</label>
             <select name="status_peminjaman" class="form-control">
@@ -53,6 +52,7 @@
           <button class="btn btn-primary mt-4 mr-2" type="submit">Simpan</button>
           <a href="<?= base_url('admin/dashboard/#peminjaman');?>" class="btn btn-danger mt-4 mr-2" type="submit">Kembali</a>
         </form>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
