@@ -6,11 +6,18 @@ class M_perpus extends CI_Model{
     return $this->db->insert($table,$data);
   }
 
+  // update status buku
   public function update_status_buku($table,$status,$id_buku)
   {
     $this->db->update($table,$status,$id_buku);
   }
 
+  // update table keranjang(peminjaman)
+  public function update_data($table,$data,$where)
+  {
+    $this->db->update($table,$data,$where);
+  }
+  
   public function getByEmail($table,$email)
   {
    return $this->db->get_where($table,['email' => $email])->row_array();
