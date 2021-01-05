@@ -194,12 +194,52 @@
     $this->load->view('templates/footer');
    }
 
-   public function buku_kembali()
+   public function buku_kembali($id)
    {
-    $this->load->view('templates_admin/header');
+    $where = ['id_pinjam' => $id];
+    $data['buku_kembali'] = $this->db->query("SELECT * FROM keranjang k, anggota a, buku b WHERE id_pinjam='$id' AND k.id_anggota=a.id_anggota AND k.id_buku=b.id_buku")->result_array();
+    $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/buku_kembali');
     $this->load->view('templates_admin/footer');
+   }
+   public function buku_kembali_aksi()
+   {
+    $id                     = $this->input->post('id_pinjam');
+    $id_buku                = $this->input->post('id_buku');
+    $tanggal_kembali        = $this->input->post('tanggal_kembali');
+    $tanggal_dikembalikan   = $this->input->post('tanggal_dikembalikan');
+    $status_pengembalian    = $this->input->post('status_pengembalian');
+    $status_peminjaman      = $this->input->post('status_peminjaman');
+    $status_pengembalian    = $this->input->post('status_pengembalian');
+    $denda                  = 1000;
+
+    $y            = strtotime($tanggal_kembali);
+    $x            = strtotime($tanggal_dikembalikan);
+    $selisih      = abs($y - $x)/(60*60*24);
+    $total_denda  = $selisih * $denda;
+
+    $data = [
+      'tanggal_dikembalikan' => $tanggal_dikembalikan,
+      'status_pengembalian' => $status_pengembalian,
+      'status_peminjaman' => $status_peminjaman,
+      'total_denda' => $total_denda
+    ];
+    $where = [
+      'id_pinjam' => $id
+    ];
+    $this->M_perpus->update_data('keranjang',$data,$where);
+
+    // Merubah status buku
+    $status = [
+			'status_buku' => '1'
+    ];
+		$id_buku = [
+			'id_buku' => $id_buku
+    ];
+		$this->M_perpus->update_status_buku('buku',$status,$id_buku);
+    $this->session->set_flashdata('pesan','Buku berhasil di kembalikan');
+    redirect('admin/dashboard/#peminjaman');
    }
 
 
