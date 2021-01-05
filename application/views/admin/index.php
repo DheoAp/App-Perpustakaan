@@ -191,9 +191,9 @@
 													<?php endif; ?>
 													</td>
 													<td><?= $p['total_denda'];?></td>
-													<td><a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td>
-													<td><a href="<?= base_url('admin/dashboard/buku_kembali');?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a></td>
-													<td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
+													<td><a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td> <!-- info -->
+													<td><a href="<?= base_url('admin/dashboard/buku_kembali/'.$p['id_buku']);?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a></td> <!-- edit -->
+													<td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td> <!-- hapus -->
 												</tr>
 										<?php endforeach; ?>
 									</tbody>
