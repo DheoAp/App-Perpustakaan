@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller{
 	public function index()
 	{
 		// $data['buku'] = $this->M_perpus->getAllData('buku');
-		$data['buku'] = $this->db->query("SELECT * FROM buku b, kategori k WHERE b.id_kategori=k.id_kategori")->result_array();
+		$data['buku'] = $this->M_perpus->data_buku()->result_array();
 		$data['title'] = "Data Buku";
 		$this->load->view('templates_anggota/header',$data);
 		$this->load->view('anggota/dashboard');
@@ -67,9 +67,8 @@ class Dashboard extends CI_Controller{
 
 	public function keranjang()
 	{
-		// $data['dataPinjam'] = $this->M_perpus->getAllData('keranjang');
 		$anggota = $this->session->userdata('id_anggota');
-		$data['dataPinjam'] = $this->db->query("SELECT * FROM keranjang k, buku b, anggota a WHERE k.id_buku=b.id_buku AND k.id_anggota=a.id_anggota AND a.id_anggota='$anggota' ORDER BY id_pinjam DESC")->result_array();
+		$data['dataPinjam'] = $this->db->query("SELECT * FROM peminjaman k, buku b, anggota a WHERE k.id_buku=b.id_buku AND k.id_anggota=a.id_anggota AND a.id_anggota='$anggota' ORDER BY id_pinjam DESC")->result_array();
 		$data['title'] = "Keranjang";
 		$this->load->view('templates_anggota/header',$data);
 		$this->load->view('anggota/keranjang_buku');
