@@ -8,25 +8,18 @@
           Dashboard
         </a>
         <div class="sb-sidenav-menu-heading">Interface</div>
-          <a class="nav-link" href="<?= base_url('admin');?>">
+          <a class="nav-link" href="<?= base_url('admin/dashboard/buku');?>">
             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
             Buku
           </a>
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="<?= base_url('admin/dashboard/anggota');?>">
             <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
             Anggota
           </a>
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+          <a class="nav-link collapsed" href="<?= base_url('admin/dashboard/peminjaman');?>" aria-expanded="false" aria-controls="collapseLayouts">
             <div class="sb-nav-link-icon"><i class="fas fa-clipboard"></i></div>
             Peminjaman
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
           </a>
-          <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="layout-static.html"><div class="sb-nav-link-icon"><i class="fas fa-check"></i></div> Selesai</a>
-              <a class="nav-link" href="layout-sidenav-light.html"><div class="sb-nav-link-icon"><i class="fas fa-times"></i></div> Belum Selesai</a>
-            </nav>
-          </div>
         <div class="sb-sidenav-menu-heading">Addons</div>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
