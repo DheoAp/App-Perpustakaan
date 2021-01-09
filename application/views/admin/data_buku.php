@@ -46,7 +46,7 @@
                       <a href="<?= base_url('admin/dashboard/edit_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a> <!-- Ubah -->
                     </td> 
                     <td>
-                      <a href="<?= base_url('admin/hapus_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a> <!-- Hapus -->
+                      <a href="<?= base_url('admin/dashboard/hapus_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a> <!-- Hapus -->
                     </td>
                   </tr>
               <?php endforeach; ?>
