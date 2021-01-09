@@ -1,7 +1,16 @@
 <div id="layoutSidenav_content">
 <main>
   <div class="container-fluid m-2">
-    <div class="card mb-5 mt-5">
+    <?php if( $this->session->flashdata('pesan')): ?>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <?= $this->session->flashdata('pesan');?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <?php endif; ?>
+    
+    <div class="card mb-5 mt-4">
       <div class="card-header">
         <i class="fas fa-book mr-1"></i>
         Data Buku | <a href="<?= base_url('admin/dashboard/tambah_buku');?>">Tambah Data Buku</a>
@@ -34,7 +43,7 @@
                       <a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a><!-- Detail -->
                     </td> 
                     <td>
-                      <a href="" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a> <!-- Ubah -->
+                      <a href="<?= base_url('admin/dashboard/edit_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a> <!-- Ubah -->
                     </td> 
                     <td>
                       <a href="<?= base_url('admin/hapus_buku/'.$b['id_buku']);?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a> <!-- Hapus -->
