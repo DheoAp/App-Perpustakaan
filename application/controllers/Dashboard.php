@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller{
 			'status_pengembalian' => '0',
 			'keperluan' => htmlspecialchars($this->input->post('keperluan',true)),
 		];
-		$this->M_perpus->insert_data('keranjang',$data);
+		$this->M_perpus->insert_data('peminjaman',$data);
 		$status =[
 			'status_buku' => '0'
 		];
