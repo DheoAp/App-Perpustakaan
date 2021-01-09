@@ -187,6 +187,33 @@ class Dashboard extends CI_Controller{
     $this->load->view('admin/data_anggota');
     $this->load->view('templates_admin/footer');
   }
+  public function detail_anggota($id)
+  {
+    $idAnggota = [
+      'id_anggota' => $id
+    ];
+
+    $data['detailAnggota'] = $this->M_perpus->getIdAnggota('anggota',$idAnggota)->row_array();
+    $this->load->view('templates_admin/header',$data);
+    $this->load->view('templates_admin/sidebar');
+    $this->load->view('admin/detail_anggota');
+    $this->load->view('templates_admin/footer');
+  } 
+  public function hapus_anggota($id)
+  {
+    $where =[
+      'id_anggota' => $id
+    ];
+
+    $this->db->where('id_anggota',$id);
+    $query = $this->db->get('anggota');
+    $row = $query->row();
+    unlink("./assets/upload/$row->gambar");   
+
+    $this->M_perpus->hapus_data('anggota',$where);
+    $this->session->set_flashdata('pesan','anggota Berhasil di hapus');
+    redirect('admin/dashboard/anggota');
+  }
 
 
   // Function Data Peminjaman
