@@ -17,7 +17,7 @@
                   <th>Alamat</th>
                   <th>No. Telp</th>
                   <th>Email</th>
-                  <th colspan="3" class="text-center">Aksi</th>
+                  <th colspan="2" class="text-center">Aksi</th>
                 </tr>
               </thead>
               
@@ -30,9 +30,8 @@
                       <td><?= $a['alamat'];?></td>
                       <td><?= $a['no_telp'];?></td>
                       <td><?= $a['email'];?></td>
-                      <td><a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td>
-                      <td><a href="" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a></td>
-                      <td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
+                      <td><a href="<?= base_url('admin/dashboard/detail_anggota/'.$a['id_anggota']);?>" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td> <!-- Detail -->
+                      <td><a href="<?= base_url('admin/dashboard/hapus_anggota/'.$a['id_anggota']);?>" onclick="return confirm('Anda Yakin?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td> <!-- Hapus -->
                     </tr>
                 <?php endforeach; ?>
               </tbody>
