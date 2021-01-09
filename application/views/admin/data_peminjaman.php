@@ -1,7 +1,15 @@
 <div id="layoutSidenav_content">
   <main>
-    <div class="container-fluid m-2">
-      <div class="card mb-5 mt-5">
+    <div class="container-fluid mt-2 mb-2">
+    <?php if( $this->session->flashdata('pesan')): ?>
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<?= $this->session->flashdata('pesan');?>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+		<?php endif; ?>
+      <div class="card mb-5 mt-4">
         <div class="card-header">
           <i class="fas fa-users mr-1"></i>
           Data Peminjaman Buku
