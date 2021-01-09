@@ -50,7 +50,7 @@
             <?= form_error('status_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <button class="btn btn-primary mt-4 mr-2" type="submit">Simpan</button>
-          <a href="<?= base_url('admin/dashboard/#peminjaman');?>" class="btn btn-danger mt-4 mr-2" type="submit">Kembali</a>
+          <a href="<?= base_url('admin/dashboard/peminjaman');?>" class="btn btn-danger mt-4 mr-2" type="submit">Kembali</a>
         </form>
         <?php endforeach; ?>
       </div>
