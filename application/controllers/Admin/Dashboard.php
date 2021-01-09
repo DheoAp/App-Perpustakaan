@@ -47,7 +47,15 @@ class Dashboard extends CI_Controller{
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/data_buku');
     $this->load->view('templates_admin/footer');
-  }  
+  } 
+  public function detail_buku($id)
+  {
+    $data['detailBuku'] = $this->M_perpus->getById($id)->row_array();
+    $this->load->view('templates_admin/header',$data);
+    $this->load->view('templates_admin/sidebar');
+    $this->load->view('admin/detail_buku');
+    $this->load->view('templates_admin/footer');
+  } 
   public function tambah_buku()
   {
     $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
@@ -158,7 +166,7 @@ class Dashboard extends CI_Controller{
     $where =[
       'id_buku' => $id
     ];
-    
+
     $this->db->where('id_buku',$id);
     $query = $this->db->get('buku');
     $row = $query->row();
