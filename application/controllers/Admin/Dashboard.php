@@ -40,7 +40,7 @@ class Dashboard extends CI_Controller{
     $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
     $this->form_validation->set_rules('status_buku', 'Status Buku', 'required');
   }
-  function buku()
+  public function buku()
   {
     $data['buku'] = $this->M_perpus->data_buku()->result_array();
     $this->load->view('templates_admin/header',$data);
@@ -88,7 +88,7 @@ class Dashboard extends CI_Controller{
 
         // Jika upload gambar gagal
         if(!$this->upload->do_upload('gambar')){
-          echo "Gambar mobil gagal di upload";
+          echo "Gambar gagal di upload";
         }else{
           $data['gambar'] = $this->upload->data('file_name');
         }
@@ -96,90 +96,77 @@ class Dashboard extends CI_Controller{
       // Masuk ke database
       $this->M_perpus->insert_data('buku',$data);
       $this->session->set_flashdata('pesan','Buku Berhasil di Tambahkan');
-      redirect('admin');
+      redirect('admin/dashboard/buku');
     }
   }
-  function edit_buku($id)
+  public function edit_buku($id)
   {
     $where = array('id_buku' => $id);
-    $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku ='$id'")->result();
-    $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
-    // $data['buku'] = $this->M_perpus->get_data('kategori')->result(?);
-    $this->load->view('templates/header');
-    $this->load->view('admin/edit_buku',$data);
-    $this->load->view('templates/footer');
+    $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku ='$id'")->result_array();
+    $data['kategori'] = $this->M_perpus->get_data('kategori')->result_array();
+    $this->load->view('templates_admin/header',$data);
+    $this->load->view('templates_admin/sidebar');
+    $this->load->view('admin/edit_buku');
+    $this->load->view('templates_admin/footer');
   }
-  function update_buku() /* Aksi */
+  public function update_buku_aksi()
   {
-    $id = $this->input->post('id');
-    $id_kategori = $this->input->post('id_kategori');
-    $judul = $this->input->post('judul_buku');
-    $pengarang = $this->input->post('pengarang');
-    $penerbit = $this->input->post('penerbit');
-    $thn_terbit = $this->input->post('thn_terbit');
-    $isbn = $this->input->post('isbn');
-    $jumlah_buku = $this->input->post('jumlah_buku');
-    $lokasi = $this->input->post('lokasi');
-    $status = $this->input->post('status');
-
-    $this->form_validation->set_rules('id_kategori','ID Kategori','required');
-    $this->form_validation->set_rules('judul_buku','Judul Buku','required|min_length[4]');
-    $this->form_validation->set_rules('pengarang','Pengarang','required|min_length[4]');
-    $this->form_validation->set_rules('penerbit','Penerbit','required|min_length[4]');
-    $this->form_validation->set_rules('thn_terbit','Tahun Terbit','required|min_length[4]');
-    $this->form_validation->set_rules('isbn','Nomor ISBN','required|numeric');
-    $this->form_validation->set_rules('jumlah_buku','Jumlah Buku','required|numeric');
-    $this->form_validation->set_rules('lokasi','Lokasi Buku','required|min_length[4]');
-    $this->form_validation->set_rules('status','Status Buku','required');
-
-    if($this->form_validation->run() != false){
-      $config['upload_path'] = './assets/upload/';
-      $config['allowed_types'] = 'jpg|png|jpeg';
-      $config['max_size'] = '2048';
-      $config['file_name'] = 'gambar'.time();
-
-      $this->load->library('upload',$config);
-
-      $where = array('id_buku' => $id);
-      $data = array(
-        'id_kategori' =>$id_kategori,
-        'judul_buku' =>$judul,
-        'pengarang' =>$pengarang,
-        'penerbit' =>$penerbit,
-        'thn_terbit' =>$thn_terbit,
-        'isbn' =>$isbn,
-        'jumlah_buku' =>$jumlah_buku,
-        'lokasi' =>$lokasi,
-        // 'gambar' =>$image['file_name'],
-        'status_buku' =>$status
-        );
-        if($this->upload->do_upload('foto')){
-          //proses upload Gambar
-          $image = $this->upload->data();
-          unlink('assets/upload/'.$this->input->post('old_pict',TRUE));
-          $data['gambar'] = $image['file_name'];
-
-          $this->M_perpus->update_data($data,$where,'buku');
-        }else{
-         $this->M_perpus->update_data($data,$where,'buku');
-        }
-
-      $this->M_perpus->update_data($data,$where,'buku');
-      redirect(base_url().'admin/buku');
+    $this->_rules();
+    if($this->form_validation->run() == false){
+      $this->buku();
     }else{
-      $where = array('id_buku' =>$id);
-      $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku='$id'")->result();
-      $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
-      $this->load->view('admin/header');
-      $this->load->view('admin/editbuku',$data);
-      $this->load->view('admin/footer');
+      $data = [
+        'id_buku' => htmlspecialchars($this->input->post('id_buku',true)),
+        'id_kategori' => htmlspecialchars($this->input->post('id_kategori',true)),
+        'judul_buku' => htmlspecialchars($this->input->post('judul_buku',true)),
+        'pengarang' => htmlspecialchars($this->input->post('pengarang',true)),
+        'thn_terbit' => htmlspecialchars($this->input->post('thn_terbit',true)),
+        'penerbit' => htmlspecialchars($this->input->post('penerbit',true)),
+        'isbn' => htmlspecialchars($this->input->post('isbn',true)),
+        'jumlah_buku' => htmlspecialchars($this->input->post('jumlah_buku',true)),
+        'lokasi' => htmlspecialchars($this->input->post('lokasi',true)),
+        'tgl_input' => htmlspecialchars($this->input->post('tgl_input',true)),
+        'status_buku' => htmlspecialchars($this->input->post('status_buku',true)),
+      ];
+      $gambar     = $_FILES['gambar']['name'];
+      if($gambar){
+        $config ['upload_path'] = './assets/upload';
+        $config ['allowed_types'] = 'jpg|png|jpeg';
+
+        $this->load->library('upload',$config);
+        
+        if($this->upload->do_upload('gambar')){
+          $gambar= $this->upload->data('file_name');
+          $this->db->set('gambar',$gambar);
+        }else{
+          echo $this->upload->display_errors();
+        }
+      } 
+
+      $where = [
+        'id_buku' => $data['id_buku']
+      ];
+      
+      $this->M_perpus->update_data('buku',$data,$where);
+      $this->session->set_flashdata('pesan','Buku Berhasil di update');
+      redirect('admin/dashboard/buku');
     }
   }
+
   public function hapus_buku($id)
   {
-    $this->M_perpus->hapus_buku('buku',$id);
+    $where =[
+      'id_buku' => $id
+    ];
+    
+    $this->db->where('id_buku',$id);
+    $query = $this->db->get('buku');
+    $row = $query->row();
+    unlink("./assets/upload/$row->gambar");
+
+    $this->M_perpus->hapus_data('buku',$where);
     $this->session->set_flashdata('pesan','Buku Berhasil di hapus');
-    redirect('admin');
+    redirect('admin/dashboard/buku');
   }
 
 
@@ -195,7 +182,7 @@ class Dashboard extends CI_Controller{
 
 
   // Function Data Peminjaman
-  function peminjaman()
+  public function peminjaman()
   {
     $data['peminjaman'] = $this->M_perpus->data_peminjaman()->result_array();
     $this->load->view('templates_admin/header',$data);
@@ -293,19 +280,19 @@ class Dashboard extends CI_Controller{
 
 
   // Auth
-  function logout()
+  public function logout()
   {
     // untuk menghapus semua session
     $this->session->sess_destroy();
     redirect('admin/auth/login');
   }
-  function ganti_password()
+  public function ganti_password()
   {
     $this->load->view('templates/header');
     $this->load->view('admin/ganti_password');
     $this->load->view('templates/footer');
   }
-  function ganti_password_act()
+  public function ganti_password_act()
   {
     $pass_baru = $this->input->post('pass_baru');
     $ulang_pass = $this->input->post('ulang_pass');
