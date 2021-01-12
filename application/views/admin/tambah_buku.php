@@ -18,7 +18,7 @@
                   <select class="form-control" name="id_kategori">
                     <option disabled selected >-Pilih Kategori-</option>
                     <?php foreach( $kategori  as $k ): ?>
-                    <option value="<?= $k->id_kategori;?>"><?= $k->nama_kategori;?></option>
+                    <option value="<?= $k['id_kategori'];?>"><?= $k['nama_kategori'];?></option>
                     <?php endforeach; ?>
                   </select>
                   <?= form_error('id_kategori', '<small class="text-danger pl-3">', '</small>'); ?>
