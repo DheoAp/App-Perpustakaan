@@ -10,20 +10,10 @@ class Dashboard extends CI_Controller{
   
   public function index()
   {
-    // memparsing data yang kita ambil dari database
-    $data['peminjaman'] = $this->db->query("select * from peminjaman order by id_pinjam desc limit 10")->result();
-    //  $data['peminjaman'] = $this->M_perpus->pinjam('peminjaman')->result();
-    $data['anggota'] = $this->db->query("select * from anggota order by id_anggota desc limit 10")->result();
-    $data['buku'] = $this->db->query('select * from buku order by id_buku desc limit 10')->result();
-    $data['peminjaman'] = $this->db->query('select * from peminjaman order by id_anggota desc limit 10')->result();
-
-    $data['peminjaman'] = $this->db->query("SELECT * FROM peminjaman p, buku b, anggota a WHERE p.id_buku=b.id_buku And p.id_anggota=a.id_anggota")->result_array();
-
     $this->load->view('templates_admin/header');
     $this->load->view('templates_admin/sidebar');
-    $this->load->view('admin/index',$data);
+    $this->load->view('admin/index');
     $this->load->view('templates_admin/footer');
-  
   }
 
 
@@ -58,11 +48,11 @@ class Dashboard extends CI_Controller{
   } 
   public function tambah_buku()
   {
-    $data['kategori'] = $this->M_perpus->get_data('kategori')->result();
+    $data['kategori'] = $this->M_perpus->getData('kategori');
 
-    $this->load->view('templates_admin/header');
+    $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
-    $this->load->view('admin/tambah_buku',$data);
+    $this->load->view('admin/tambah_buku');
     $this->load->view('templates_admin/footer');
   }
   public function tambah_buku_aksi()
@@ -110,8 +100,8 @@ class Dashboard extends CI_Controller{
   public function edit_buku($id)
   {
     $where = array('id_buku' => $id);
-    $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku ='$id'")->result_array();
-    $data['kategori'] = $this->M_perpus->get_data('kategori')->result_array();
+    $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku ='$id'");
+    $data['kategori'] = $this->M_perpus->getData('kategori');
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/edit_buku');
