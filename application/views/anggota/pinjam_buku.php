@@ -3,7 +3,7 @@
    <div class="card-header">
       Pinjam Buku
    </div>
-   <div class="card-body">
+  <div class="card-body">
     <form action="<?= base_url('dashboard/aksi_pinjam_buku');?>" method="post" enctype="multipart/form-data">
       
       <div class="row">
@@ -39,13 +39,13 @@
           <!-- </div>
           <div class="col"> -->
           <?php
-            $pinjam            = date("d-m-Y");
+            $pinjam            = date("Y-m-d");
             $tujuh_hari        = mktime(0,0,0,date("n"),date("j")+7,date("Y"));
-            $kembali           = date("d F Y", $tujuh_hari);
+            $kembali           = date("Y-m-d", $tujuh_hari);
           ?>
           <div class="form-group">
             <label for="tanggal_pinjam">Tanggal Pinjam</label>
-            <input class="form-control" readonly name="tanggal_pinjam" value="<?= date('d F Y');?>" type="text" id="tanggal_pinjam">
+            <input class="form-control" readonly name="tanggal_pinjam" value="<?= $pinjam;?>" type="text" id="tanggal_pinjam">
             <?= form_error('tanggal_pinjam', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           
