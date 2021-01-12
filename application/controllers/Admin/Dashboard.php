@@ -225,15 +225,6 @@ class Dashboard extends CI_Controller{
     $this->load->view('admin/data_peminjaman');
     $this->load->view('templates_admin/footer');
   } 
-
-  // Function transaksi/pinjam
-  public function data_pinjam()
-  {
-    $data['buku'] = $this->M_perpus->get_data('buku')->result();
-    $this->load->view('templates/header');
-    $this->load->view('admin/buku',$data);
-    $this->load->view('templates/footer');
-  }
   public function buku_kembali($id)
   {
     $where = ['id_pinjam' => $id];
@@ -256,8 +247,13 @@ class Dashboard extends CI_Controller{
 
     $y            = strtotime($tanggal_kembali);
     $x            = strtotime($tanggal_dikembalikan);
-    $selisih      = abs($y - $x)/(60*60*24);
-    $total_denda  = $selisih * $denda;
+    
+    if($tanggal_kembali < $tanggal_dikembalikan){
+      $selisih      = abs($y - $x)/(60*60*24);
+      $total_denda  = $selisih * $denda;
+    }else{
+      $total_denda = 0;
+    }
 
     $data = [
       'tanggal_dikembalikan' => $tanggal_dikembalikan,
@@ -265,21 +261,19 @@ class Dashboard extends CI_Controller{
       'status_peminjaman' => $status_peminjaman,
       'total_denda' => $total_denda
     ];
-    $where = [
+    
+    $id_buku = [
       'id_pinjam' => $id
     ];
-    $this->M_perpus->update_data('peminjaman',$data,$where);
+    $this->M_perpus->update_data('peminjaman',$data,$id_buku);
 
     // Merubah status buku
-    $status = [
-      'status_buku' => '1'
-    ];
-    $id_buku = [
-      'id_buku' => $id_buku
-    ];
-    $this->M_perpus->update_status_buku('buku',$status,$id_buku);
+    // $this->db->set('status_buku', '1');
+    // $this->db->where('id_buku',''); #id buku tidak muncul/ status buku tidak berubah
+    // $this->db->update('buku');
+    // $this->M_perpus->update_data('buku',$buku,$where);
     $this->session->set_flashdata('pesan','Buku berhasil di kembalikan');
-    redirect('admin/dashboard/#peminjaman');
+    redirect('admin/dashboard/peminjaman');
   }
 
 
