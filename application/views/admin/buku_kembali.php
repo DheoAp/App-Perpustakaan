@@ -24,12 +24,12 @@
           </div>
           <div class="form-group">
               <label for="tanggal_pengembalian">Tanggal Kembali</label>
-              <input class="form-control" type="text" name="tanggal_kembali" value="<?= $b['tanggal_kembali'];?>" readonly>
+              <input class="form-control" type="date" name="tanggal_kembali" value="<?= $b['tanggal_kembali'];?>" readonly>
               <?= form_error('tanggal_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <div class="form-group">
             <label for="tanggal_dikembalikan">Tanggal dikembalikan</label>
-            <input class="form-control" name="tanggal_dikembalikan" value="" type="date" id="tanggal_dikembalikan">
+            <input class="form-control" name="tanggal_dikembalikan" value="<?= date("Y-m-d");?>" type="date" id="tanggal_dikembalikan">
             <?= form_error('tanggal_dikembalikan', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           
