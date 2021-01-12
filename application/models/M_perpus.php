@@ -27,6 +27,7 @@ class M_perpus extends CI_Model{
   /* 
     Get semua data
       - data anggota
+      - data kategori
   */
   public function getData($table)
   {
@@ -105,54 +106,13 @@ class M_perpus extends CI_Model{
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // update table keranjang(peminjaman)
+  /* 
+    update table keranjang(peminjaman)
+  */
   public function update_data($table,$data,$where)
   {
     $this->db->update($table,$data,$where);
   }
-  
-
-  public function edit_data($where,$table)
-  {
-   return $this->db->get_where($table,$where); 
-  }
-  
- 
-
-  public function pinjam($table)
-  {
-    $this->db->order_by($table,'id_pinjam','DESC')
-                      ->limit(10);
-  }
-
-  public function get_data($table)
- {
-   return $this->db->get($table);
- }
-
-//  public function delete_data($where,$table)
-//  {
-//    $this->db->where($where);
-//    $this->db->delete($table);
-//  }
 
 }//akhir class
 
