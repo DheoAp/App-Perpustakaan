@@ -20,7 +20,8 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Anggota</th>
+                  <th>Nama</th>
+                  <th>Buku</th>
                   <th>Tgl Pinjam</th>
                   <th>Tgl Kembali</th>
                   <th>Status Pinjam</th>
@@ -35,6 +36,7 @@
                     <tr>
                       <td><?= $no++;?></td>
                       <td><?= $p['nama_anggota'];?></td>
+                      <td><?= $p['judul_buku'];?></td>
                       <td><?= $p['tanggal_pinjam'];?></td>
                       <td><?= $p['tanggal_kembali'];?></td>
                       <td>
