@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="card mx-auto" style="margin-top: 100px;margin-bottom:200px; width:100%">
     <div class="card-header">
-    <h5>Terimakasih, berikut buku yang anda pinjam</h5>
+    <h5>Buku yang anda pinjam</h5>
     </div>
     <?php if( $this->session->flashdata('pesan')): ?>
       <div class="row mt-4">
@@ -35,8 +35,8 @@
             <td><?= $no++;?></td>
             <td><?= $p['judul_buku'];?></td>
             <td><?= $p['pengarang'];?></td>
-            <td><?= $p['tanggal_pinjam'];?></td>
-            <td><?= $p['tanggal_kembali'];?></td>
+            <td><?= date('d F Y',strtotime($p['tanggal_pinjam']));?></td>
+            <td><?= date('d F Y',strtotime($p['tanggal_kembali']));?></td>
             <td>
               <?php if( $p['status_peminjaman'] == '0' ): ?>
                   <?= '<h6><span class="badge badge-primary">Belum Selesai</span></h6>';?>
