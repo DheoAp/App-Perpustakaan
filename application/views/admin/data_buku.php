@@ -23,6 +23,7 @@
                 <th>No</th>
                 <th>Kategori</th>
                 <th>Judul Buku</th>
+                <th>Status</th>
                 <th>Pengarang</th>
                 <th>Penerbit</th>
                 <th>Lokasi</th>
@@ -36,6 +37,13 @@
                     <td><?= $no++;?></td>
                     <td><?= $b['nama_kategori'];?></td>
                     <td><?= $b['judul_buku'];?></td>
+                    <td>
+                      <?php if( $b['status_buku'] == 1 ): ?>
+                        <?= '<h6><span class="badge badge-primary">Tersedia</span></h6>';?>
+                      <?php else: ?>
+                        <?= '<h6><span class="badge badge-secondary">Sedang di pinjam</span></h6>';?>
+                      <?php endif; ?>
+                    </td>
                     <td><?= $b['pengarang'];?></td>
                     <td><?= $b['penerbit'];?></td>
                     <td><?= $b['lokasi'];?></td>
