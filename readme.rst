@@ -1,3 +1,11 @@
+Akses Admin
+admin@gmail.com
+pw: 123456
+
+Akses Anggota
+sakura@gmail.com
+pw: 123456
+
 ###################
 What is CodeIgniter
 ###################
