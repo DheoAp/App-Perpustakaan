@@ -32,7 +32,11 @@ class Dashboard extends CI_Controller{
   }
   public function buku()
   {
-    $data['buku'] = $this->M_perpus->data_buku()->result_array();
+    $data = [
+      'buku' => $this->M_perpus->data_buku()->result_array(),
+      'title' => "Halaman Buku"
+
+    ];
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/data_buku');
@@ -171,7 +175,10 @@ class Dashboard extends CI_Controller{
   // Function Data Anggota
   function anggota()
   {
-    $data['anggota'] = $this->M_perpus->getData('anggota');
+    $data = [
+      'anggota' => $this->M_perpus->getData('anggota'),
+      'title' => "Halaman Anggota"
+    ];
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/data_anggota');
@@ -209,7 +216,10 @@ class Dashboard extends CI_Controller{
   // Function Data Peminjaman
   public function peminjaman()
   {
-    $data['peminjaman'] = $this->M_perpus->data_peminjaman()->result_array();
+    $data = [
+      'peminjaman' => $this->M_perpus->data_peminjaman()->result_array(),
+      'title' => "Halaman Pinjam"
+    ];
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/data_peminjaman');
@@ -267,6 +277,16 @@ class Dashboard extends CI_Controller{
     $this->session->set_flashdata('pesan','Buku berhasil di kembalikan');
     redirect('admin/dashboard/peminjaman');
   }
+  public function hapus_peminjaman($id)
+  {
+    $where =[
+      'id_pinjam' => $id
+    ]; 
+
+    $this->M_perpus->hapus_data('peminjaman',$where);
+    $this->session->set_flashdata('pesan','Data Berhasil di hapus');
+    redirect('admin/dashboard/peminjaman');
+  }
 
 
   // Daftar
@@ -306,32 +326,6 @@ class Dashboard extends CI_Controller{
     // untuk menghapus semua session
     $this->session->sess_destroy();
     redirect('admin/auth/login');
-  }
-  public function ganti_password()
-  {
-    $this->load->view('templates/header');
-    $this->load->view('admin/ganti_password');
-    $this->load->view('templates/footer');
-  }
-  public function ganti_password_act()
-  {
-    $pass_baru = $this->input->post('pass_baru');
-    $ulang_pass = $this->input->post('ulang_pass');
-
-    $this->form_validation->set_rules('pass_baru', 'Password Baru', 'required|matches[ulang_pass]');
-    $this->form_validation->set_rules('ulang_pass', 'Ulangi Password Baru', 'required');
-
-    if($this->form_validation->run() != false){
-      $data = array('password' => md5($pass_baru));
-      $w = array('id_admin' => $this->session->userdata('id')); // untuk perintah menampilkan session 'id' admin yang sedang login
-
-      $this->M_perpus->update_data($w,$data,'admin');
-      redirect(base_url().'admin/ganti_password?pesan=berhasil');
-    }else{
-      $this->load->view('templates/header');
-      $this->load->view('admin/ganti_password');
-      $this->load->view('templates/footer');
-    }
   }
 
 }// akhir class
