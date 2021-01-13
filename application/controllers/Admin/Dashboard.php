@@ -25,8 +25,8 @@ class Dashboard extends CI_Controller{
     $this->form_validation->set_rules('pengarang', 'Pengarang', 'required');
     $this->form_validation->set_rules('penerbit', 'penerbit', 'required');
     $this->form_validation->set_rules('thn_terbit', 'Tahun Terbit', 'required');
-    $this->form_validation->set_rules('isbn', 'ISBN', 'required');
-    $this->form_validation->set_rules('jumlah_buku', 'Jumlah Buku', 'required');
+    $this->form_validation->set_rules('isbn', 'ISBN', 'required|numeric');
+    $this->form_validation->set_rules('jumlah_buku', 'Jumlah Buku', 'required|numeric');
     $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
     $this->form_validation->set_rules('status_buku', 'Status Buku', 'required');
   }
@@ -100,7 +100,7 @@ class Dashboard extends CI_Controller{
   public function edit_buku($id)
   {
     $where = array('id_buku' => $id);
-    $data['buku'] = $this->db->query("SELECT * FROM buku B, kategori K WHERE B.id_kategori=K.id_kategori AND B.id_buku ='$id'");
+    $data['buku'] =  $this->M_perpus->getById($id)->result_array();
     $data['kategori'] = $this->M_perpus->getData('kategori');
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
@@ -252,16 +252,10 @@ class Dashboard extends CI_Controller{
       'total_denda' => $total_denda
     ];
     
-    $id_buku = [
+    $where = [
       'id_pinjam' => $id
     ];
-    $this->M_perpus->update_data('peminjaman',$data,$id_buku);
-
-    // Merubah status buku
-    // $this->db->set('status_buku', '1');
-    // $this->db->where('id_buku',''); #id buku tidak muncul/ status buku tidak berubah
-    // $this->db->update('buku');
-    // $this->M_perpus->update_data('buku',$buku,$where);
+    $this->M_perpus->update_data('peminjaman',$data,$where);
     $this->session->set_flashdata('pesan','Buku berhasil di kembalikan');
     redirect('admin/dashboard/peminjaman');
   }
