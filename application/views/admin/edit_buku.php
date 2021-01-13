@@ -6,7 +6,7 @@
       <?= form_open_multipart('admin/dashboard/update_buku_aksi'); ?>
         <div class="card">
           <div class="card-header">
-            Tambah Buku
+            Edit Buku
           </div>
           <div class="card-body">
             <div class="row">
