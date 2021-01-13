@@ -56,7 +56,7 @@
                       <td>Rp. <?= number_format($p['total_denda'],0,',','.')?></td>
                       <td><a href="" class="btn btn-sm btn-success"><i class="fa fa-info-circle"></i></a></td> <!-- info -->
                       <td><a href="<?= base_url('admin/dashboard/buku_kembali/'.$p['id_pinjam']);?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a></td> <!-- edit -->
-                      <td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td> <!-- hapus -->
+                      <td><a onclick="return confirm('Anda Yakin Ingin Hapus?')" href="<?= base_url('admin/dashboard/hapus_peminjaman/'.$p['id_pinjam']);?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td> <!-- hapus -->
                     </tr>
                 <?php endforeach; ?>
               </tbody>
