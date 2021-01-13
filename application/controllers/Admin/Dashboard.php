@@ -218,7 +218,8 @@ class Dashboard extends CI_Controller{
   public function buku_kembali($id)
   {
     $where = ['id_pinjam' => $id];
-    $data['buku_kembali'] = $this->db->query("SELECT * FROM peminjaman k, anggota a, buku b WHERE id_pinjam='$id' AND k.id_anggota=a.id_anggota AND k.id_buku=b.id_buku")->result_array();
+    // $data['buku_kembali'] = $this->db->query("SELECT * FROM peminjaman k, anggota a, buku b WHERE id_pinjam='$id' AND k.id_anggota=a.id_anggota AND k.id_buku=b.id_buku")->result_array();
+    $data['buku_kembali'] = $this->M_perpus->data_peminjaman()->result_array();
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/buku_kembali');
@@ -233,18 +234,25 @@ class Dashboard extends CI_Controller{
     $status_pengembalian    = $this->input->post('status_pengembalian');
     $status_peminjaman      = $this->input->post('status_peminjaman');
     $status_pengembalian    = $this->input->post('status_pengembalian');
-    $denda                  = 1000;
+    $rusak                  = $this->input->post('denda_rusak');
+    $telat             = 1000;
 
     $y            = strtotime($tanggal_kembali);
     $x            = strtotime($tanggal_dikembalikan);
     
     if($tanggal_kembali < $tanggal_dikembalikan){
       $selisih      = abs($y - $x)/(60*60*24);
-      $total_denda  = $selisih * $denda;
+      $denda_telat = $selisih * $telat;
     }else{
-      $total_denda = 0;
+      $denda_telat = 0;
     }
 
+    if($rusak == "Rusak"){
+      $denda_rusak = 5000;
+    }else{
+      $denda_rusak = 0;
+    }
+    $total_denda = $denda_telat + $denda_rusak;
     $data = [
       'tanggal_dikembalikan' => $tanggal_dikembalikan,
       'status_pengembalian' => $status_pengembalian,
