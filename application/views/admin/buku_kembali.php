@@ -14,7 +14,7 @@
             <label for="nama_lengkap">Nama Anggota</label>
             <input class="form-control" name="id_pinjam" value="<?= $b['id_pinjam'];?>" type="hidden" id="id_pinjam" readonly>
             <input class="form-control" name="id_buku" value="<?= $b['id_buku'];?>" type="hidden" id="id_buku" readonly>
-            <input class="form-control" name="nama_lengkap" value="<?= $b['nama_lengkap'];?>" type="text" id="nama_lengkap" readonly>
+            <input class="form-control" name="nama_lengkap" value="<?= $b['nama_anggota'];?>" type="text" id="nama_lengkap" readonly>
             <?= form_error('nama_lengkap', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
           <div class="form-group">
@@ -27,27 +27,45 @@
               <input class="form-control" type="date" name="tanggal_kembali" value="<?= $b['tanggal_kembali'];?>" readonly>
               <?= form_error('tanggal_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
           </div>
-          <div class="form-group">
-            <label for="tanggal_dikembalikan">Tanggal dikembalikan</label>
-            <input class="form-control" name="tanggal_dikembalikan" value="<?= date("Y-m-d");?>" type="date" id="tanggal_dikembalikan">
-            <?= form_error('tanggal_dikembalikan', '<small class="text-danger pl-3">', '</small>'); ?>
-          </div>
-          
-          <div class="form-group">
-            <label>Status Peminjaman</label>
-            <select name="status_peminjaman" class="form-control">
-              <option value="0">Belum Selesai</option>
-              <option value="1">Sudah Selesai</option>
-            </select>
-            <?= form_error('status_peminjaman', '<small class="text-danger pl-3">', '</small>'); ?>
-          </div>
-          <div class="form-group">
-            <label>Status Pengembalian</label>
-            <select name="status_pengembalian" class="form-control">
-              <option value="0">Belum kembali</option>
-              <option value="1">Sudah kembali</option>
-            </select>
-            <?= form_error('status_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
+
+          <div class="row">
+            <div class="col-md">
+              <div class="form-group">
+                <label for="tanggal_dikembalikan">Tanggal dikembalikan</label>
+                <input class="form-control" name="tanggal_dikembalikan" value="<?= date("Y-m-d");?>" type="date" id="tanggal_dikembalikan">
+                <?= form_error('tanggal_dikembalikan', '<small class="text-danger pl-3">', '</small>'); ?>
+              </div>
+              
+              <div class="form-group">
+                <label>Kondisi Buku</label>
+                <select name="denda_rusak" class="form-control">
+                  <option disabled selected>== Pilih ==</option>
+                  <option value="Baik">Baik</option>
+                  <option value="Rusak">Rusak</option>
+                </select>
+                <?= form_error('denda_rusak', '<small class="text-danger pl-3">', '</small>'); ?>
+              </div>
+            </div>
+
+            <div class="col-md">
+              <div class="form-group">
+                <label>Status Peminjaman</label>
+                <select name="status_peminjaman" class="form-control">
+                  <option value="0">Belum Selesai</option>
+                  <option value="1">Sudah Selesai</option>
+                </select>
+                <?= form_error('status_peminjaman', '<small class="text-danger pl-3">', '</small>'); ?>
+              </div>
+              <div class="form-group">
+                <label>Status Pengembalian</label>
+                <select name="status_pengembalian" class="form-control">
+                  <option value="0">Belum kembali</option>
+                  <option value="1">Sudah kembali</option>
+                </select>
+                <?= form_error('status_pengembalian', '<small class="text-danger pl-3">', '</small>'); ?>
+              </div>
+            </div>
+            
           </div>
           <button class="btn btn-primary mt-4 mr-2" type="submit">Simpan</button>
           <a href="<?= base_url('admin/dashboard/peminjaman');?>" class="btn btn-danger mt-4 mr-2" type="submit">Kembali</a>
