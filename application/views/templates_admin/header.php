@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Dashboard - SB Admin</title>
+	<title><?= $title;;?></title>
 	
 	<link href="<?= base_url('vendor/style_admin/css/styles.css');?>" rel="stylesheet" />
 	<link href="<?= base_url('vendor/style_admin/css/dataTables.bootstrap4.min.css');?>" />
