@@ -10,7 +10,8 @@ class Dashboard extends CI_Controller{
   
   public function index()
   {
-    $this->load->view('templates_admin/header');
+    $data =['title' => 'Dashboard Admin'];
+    $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/index');
     $this->load->view('templates_admin/footer');
@@ -44,7 +45,10 @@ class Dashboard extends CI_Controller{
   } 
   public function detail_buku($id)
   {
-    $data['detailBuku'] = $this->M_perpus->getById($id)->row_array();
+    $data = [
+      'detailBuku' => $this->M_perpus->getById($id)->row_array(),
+      'title' => 'Detail Buku'
+    ];
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/detail_buku');
@@ -104,8 +108,11 @@ class Dashboard extends CI_Controller{
   public function edit_buku($id)
   {
     $where = array('id_buku' => $id);
-    $data['buku'] =  $this->M_perpus->getById($id)->result_array();
-    $data['kategori'] = $this->M_perpus->getData('kategori');
+    $data = [
+      'buku' =>  $this->M_perpus->getById($id)->result_array(),
+      'kategori' =>  $this->M_perpus->getData('kategori'),
+      'title' => 'Edit Buku'
+    ];  
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/edit_buku');
@@ -229,7 +236,10 @@ class Dashboard extends CI_Controller{
   {
     $where = ['id_pinjam' => $id];
     // $data['buku_kembali'] = $this->db->query("SELECT * FROM peminjaman k, anggota a, buku b WHERE id_pinjam='$id' AND k.id_anggota=a.id_anggota AND k.id_buku=b.id_buku")->result_array();
-    $data['buku_kembali'] = $this->M_perpus->data_peminjaman()->result_array();
+    $data =[
+      'buku_kembali' => $this->M_perpus->data_peminjaman()->result_array(),
+      'title' => 'Buku kembali'
+    ];
     $this->load->view('templates_admin/header',$data);
     $this->load->view('templates_admin/sidebar');
     $this->load->view('admin/buku_kembali');
